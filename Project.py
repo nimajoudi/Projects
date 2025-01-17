@@ -1,318 +1,366 @@
 import ttkbootstrap as ttk
 from ttkbootstrap.constants import *
 from tkinter import messagebox
-from os import system
-from string import ascii_letters, ascii_lowercase, ascii_uppercase, digits, punctuation
+import json
 
 class BankManagement :
-    
-    # region command for login button page 2  (not finished)
-    def show_login_page(self):
-    
+
+    # region command login button (finish)
+
+    def login(self):
+
         self.label_mainpage.grid_forget()
         self.button_login.grid_forget()
         self.button_registry.grid_forget()
 
-        self.label_login.grid(row=1, column=0, padx=300)
-        self.label_username_page2.grid(row=2, column=0, padx=10, pady=10, sticky='w')
-        self.entry_username_page2.grid(row=2, column=1, padx=10, pady=10, sticky='w')
-        self.label_password_page2.grid(row=4, column=0, padx=10, pady=10, sticky='w')
-        self.entry_password_page2.grid(row=4, column=1, padx=10, pady=30, sticky='w')
-        self.button_enter.grid(row=5, column=0, padx=300, sticky='w')
-        self.button_back_page2.grid(row=5, column=1, padx=100, sticky='w')
+        self.label_login.grid(row=0, column=0, padx=250)
 
+        self.label_username_login_page.grid(row=1, column=0, padx=10, pady=10, sticky='w')
+        self.entry_username_login_page.grid(row=1, padx=100, pady=10)
 
+        self.label_password_login_page.grid(row=2, column=0, padx=10, pady=10, sticky='w')
+        self.entry_password_login_page.grid(row=2, padx=100, pady= 10)
 
-
+        self.button_enter.grid(row=3, column=0, padx=200,pady= 10, sticky='w')
+        self.button_back_page2.grid(row=3, column=0, padx=300, pady=10, sticky='w')
 
     #endregion
 
-   
-    # region command for back button page 2
-    def back_to_main_page(self):
+    # region command enter button (not finished)
+
+    def checking(self):
+
+        username = self.entry_username_login_page.get()
+        password = self.entry_password_login_page.get()
+        nationalcode = self.entry_nationalcode.get()
+
+        with open('datafile.txt','r') as file :
+            var = file.read()
+
+            if username in var and password in var : 
+
+                self.label_login.grid_forget()
+                self.label_username_login_page.grid_forget()
+                self.entry_username_login_page.grid_forget()
+                self.label_password_login_page.grid_forget()
+                self.entry_password_login_page.grid_forget()
+                self.button_enter.grid_forget()
+                self.button_back_page2.grid_forget()
+
+                # ma baghioe code page dakhjele app
+
+            else:
+                messagebox.showerror('Error:', 'Invalid username or password')
+
+                self.label_login.grid(row=0, column=0, padx=250)
+                self.label_username_login_page.grid(row=1, column=0, padx=10, pady=10, sticky='w')
+                self.entry_username_login_page.grid(row=1,padx=100,pady=10)
+                
+                self.label_password_login_page.grid(row=2, column=0, padx=10, pady=10, sticky='w')
+                self.entry_password_login_page.grid(row=2, padx=100, pady= 10)
+
+                self.button_enter.grid(row=3, column=0, padx=200,pady= 10, sticky='w')
+                self.button_back_page2.grid(row=3, column=0, padx=300, pady=10, sticky='w')
+
+    #endregion
+
+
+
+    # region command back button login page (finish)
+
+    def back_main_page(self):
 
         self.label_login.grid_forget()
-        self.label_username_page2.grid_forget()
-        self.entry_username_page2.grid_forget()
-        self.label_password_page2.grid_forget()
-        self.entry_password_page2.grid_forget()
+
+        self.label_username_login_page.grid_forget()
+        self.entry_username_login_page.grid_forget()
+
+        self.label_password_login_page.grid_forget()
+        self.entry_password_login_page.grid_forget()
+
         self.button_enter.grid_forget()
         self.button_back_page2.grid_forget()
 
-        self.label_mainpage.grid(row = 1, column = 0, padx = 300)
-        self.button_login.grid(row = 2, column = 0, padx=150, sticky='w') 
-        self.button_registry.grid(row = 2, column = 0)
+        self.label_mainpage.grid(row = 0, column = 0, padx=170, sticky='w')
+        self.button_login.grid(row = 1, column = 0, padx=200,pady=10, sticky='w')
+        self.button_registry.grid(row = 1, column = 0, padx=300, pady=10, sticky='w')
 
     #endregion
 
+    # region command registry button (finish)
 
-    # region registry button
+    def registry(self):
 
-    def registry_page(self):
-        
         self.label_mainpage.grid_forget()
         self.button_login.grid_forget()
         self.button_registry.grid_forget()
 
-        self.label_registration.grid(row=1, column=0, padx=300)
-        self.label_name.grid(row=2, column=0)
-        self.entry_name.grid(row=2, column=1)
-        self.label_family.grid(row=3, column=0)
-        self.entry_family.grid(row=3, column=1)
-        self.label_nationalcode.grid(row=4, column=0)
-        self.entry_nationalcode.grid(row=4, column=1)
-        self.label_dateofbirth.grid(row=5, column=0)
-        self.entry_dateofbirth.grid(row=5, column=1)
-        self.label_email.grid(row=6, column=0)
-        self.entry_email.grid(row=6, column=1)
-        self.label_password.grid(row=7, column=0)
-        self.entry_password.grid(row=7, column=1)
-        self.label_confirmpassword.grid(row=8, column=0)
-        self.entry_confirmpassword.grid(row=8, column=1)
-        self.button_submit.grid(row=9, column=1)
-        self.button_back_page3.grid(row=9, column=2)
-    
+        self.label_registry_page.grid(row=0, column=0, padx=250, pady=10)
+
+        self.label_name.grid(row=1, column=0, padx=10, pady=10, sticky='w')
+        self.entry_name.grid(row=1, padx=10, pady=10)
+
+        self.label_family.grid(row=2, column=0, padx=10, pady=10, sticky='w')
+        self.entry_family.grid(row=2, padx=10, pady=10)
+
+        self.label_email.grid(row=3, column=0, padx=10, pady=10, sticky='w')
+        self.entry_email.grid(row=3, padx=10, pady=10)
+
+        self.label_nationalcode.grid(row=4, column=0, padx=10, pady=10, sticky='w')
+        self.entry_nationalcode.grid(row=4, padx=10, pady=10)
+
+        self.label_age.grid(row=5, column=0, padx=10, pady=10, sticky='w')
+        self.entry_age.grid(row=5, padx=10, pady=10)
+
+        self.label_password_registry.grid(row=6, column=0, padx=10, pady=10,sticky='w')
+        self.entry_password_registry.grid(row=6, padx=10, pady=10)
+
+        self.label_confirm_password.grid(row=7, column=0, padx=10, pady=10, sticky='w')
+        self.entry_confirm_password.grid(row=7, padx=10, pady=10)
+
+        self.button_submit.grid(row = 8, column = 0, padx=200,pady=10, sticky='w')
+        self.button_back_registry.grid(row = 8, column = 0, padx=300,pady=10, sticky='w') 
+
     #endregion
 
+    # region command submit button (finished)
 
-    # region command for submit button page3 (not finished)
-    def login(self):
-        
-        self.name = self.entry_name.get()
-        self.family = self.entry_family.get()
-        self.nationalcode = self.entry_nationalcode.get()
-        self.dateofbirth = self.entry_dateofbirth.get()
-        self.email = self.entry_email.get()
-        self.password = self.entry_password.get()
-        self.confirmpassword = self.entry_confirmpassword.get()
+    def submit(self):
 
-        if self.name and self.family and self.nationalcode and self.dateofbirth and self.email and self.password and self.confirmpassword == '' :
-            messagebox.showerror('Error:', 'Please complete all the required items!!!')
+        data_list = []
 
-        elif len(self.password)<8:
-            messagebox.showerror('Error:',"Your Password must have more than 8 characters.")
 
-        elif self.password.intersection(ascii_lowercase):
-            messagebox.showerror('Error:',"Your Password must have at least a lower character. ")
+        name = self.entry_name.get()
+        family = self.entry_family.get()
+        age = self.entry_age.get()
+        national_code = self.entry_nationalcode.get()
+        email = self.entry_email.get()
+        password = self.entry_password_registry.get()
+        confirm_password = self.entry_confirm_password.get()
 
-        elif self.password.intersection(ascii_uppercase):
-            messagebox.showerror('Error:',"Your Password must have at least a capital character.")  
+        if password == confirm_password :
+            user_info = {
+                'Name': name,
+                'Family': family,
+                'National code': national_code,
+                'Age': age,
+                'E-mail': email,
+                'Password':password
+            }
+            data_list.append(user_info)
 
-        elif self.password.intersection(digits):
-            messagebox.showerror('Error:',"Your Password must have at least one number.")  
+            with open('datafile.txt', 'a') as file :
+                json.dump(data_list,file)
 
-        elif self.password.intersection(punctuation):
-            messagebox.showerror('Error:'," Your Password must have at least a Punctuation character.")  
+                messagebox.showinfo('Result:', 'Registration was successfully.\nYour username is your National code')
+
+            self.label_registry_page.grid_forget()
+            self.label_name.grid_forget()
+            self.entry_name.grid_forget()
+            self.label_family.grid_forget()
+            self.entry_family.grid_forget()
+            self.label_email.grid_forget()
+            self.entry_email.grid_forget()
+            self.label_nationalcode.grid_forget()
+            self.entry_nationalcode.grid_forget()
+            self.label_age.grid_forget()
+            self.entry_age.grid_forget()
+            self.label_password_registry.grid_forget()
+            self.entry_password_registry.grid_forget()
+            self.label_confirm_password.grid_forget()
+            self.entry_confirm_password.grid_forget()
+            self.button_submit.grid_forget()
+            self.button_back_registry.grid_forget()
+
+            self.label_login.grid(row=0, column=0, padx=250)
+
+            self.label_username_login_page.grid(row=1, column=0, padx=10, pady=10, sticky='w')
+            self.entry_username_login_page.grid(row=1, padx=100, pady=10)
+
+            self.label_password_login_page.grid(row=2, column=0, padx=10, pady=10, sticky='w')
+            self.entry_password_login_page.grid(row=2, padx=100, pady= 10)
+
+            self.button_enter.grid(row=3, column=0, padx=200,pady= 10, sticky='w')
+            self.button_back_page2.grid(row=3, column=0, padx=300, pady=10, sticky='w')
 
         else:
-            self.password.difference(ascii_letters+digits+punctuation)
-            messagebox.showerror('Error:',"Character error")
+            messagebox.showerror('Error!!', 'Please check your information')
 
-        if self.password == self.confirmpassword :
-                    
-            def save_to_file(self, data, filename='data.txt'):                
-                    with open(filename, 'a') as file:
-                        self.file.write(f"Name: {data['Name']}, Family: {data['Family']}, Age: {data['Age']}, Email: {data['Email']}, Password: {data['Password']}\n")
+    #endregion
+
+    # region command back button registry page (finished)
+
+    def backtomainpage(self):
         
-            user_info = {
-                'Name': self.name,
-                'Family': self.family,
-                'Age': self.dateofbirth,
-                'Email': self.email,
-                'Password' : self.confirmpassword
-            }
-        
-            self.save_to_file(user_info)  
+            self.label_registry_page.grid_forget()
+            self.label_name.grid_forget()
+            self.entry_name.grid_forget()
+            self.label_family.grid_forget()
+            self.entry_family.grid_forget()
+            self.label_email.grid_forget()
+            self.entry_email.grid_forget()
+            self.label_nationalcode.grid_forget()
+            self.entry_nationalcode.grid_forget()
+            self.label_age.grid_forget()
+            self.entry_age.grid_forget()
+            self.label_password_registry.grid_forget()
+            self.entry_password_registry.grid_forget()
+            self.label_confirm_password.grid_forget()
+            self.entry_confirm_password.grid_forget()
+            self.button_submit.grid_forget()
+            self.button_back_registry.grid_forget()
 
-        self.label_mainpage.grid_forget()
-        self.button_login.grid_forget()
-        self.button_registry.grid_forget()
-
-        self.label_registration.grid_forget()
-        self.label_name.grid_forget()
-        self.entry_name.grid_forget()
-        self.label_family.grid_forget()
-        self.entry_family.grid_forget()
-        self.label_nationalcode.grid_forget()
-        self.entry_nationalcode.grid_forget()
-        self.label_dateofbirth.grid_forget()
-        self.entry_dateofbirth.grid_forget()  
-        self.label_email.grid_forget()
-        self.entry_email.grid_forget()  
-        self.label_password.grid_forget()
-        self.entry_password.grid_forget()  
-        self.label_confirmpassword.grid_forget()
-        self.entry_confirmpassword.grid_forget()
-        self.button_submit.grid_forget()
-        self.button_back_page3.grid_forget()
-
-        self.label_login.grid(row=1, column=0, padx=300)
-        self.label_username_page2.grid(row=2, column=0, padx=10, pady=10, sticky='w')
-        self.entry_username_page2.grid(row=2, column=1, padx=10, pady=10, sticky='w')
-        self.label_password_page2.grid(row=4, column=0, padx=10, pady=10, sticky='w')
-        self.entry_password_page2.grid(row=4, column=1, padx=10, pady=30)
-        self.button_enter.grid(row=5, column=0, padx=100, sticky='w')
-        self.button_back_page2.grid(row=5, column=1, padx=100, sticky='w')
-
-
-        
-
-
-
-
-
-
+            self.label_mainpage.grid(row = 0, column = 0, padx=170, sticky='w')
+            self.button_login.grid(row = 1, column = 0, padx=200,pady=10, sticky='w')
+            self.button_registry.grid(row = 1, column = 0, padx=300, pady=10, sticky='w')
 
 
 
 
     #endregion
-    
 
 
 
 
 
+    # region create
 
-    #____________________________________________________________________________________________ 
     def __init__(self):
         self.main_page()
 
-    # MAIN PAGE
-    def main_page(self):
-        
-        self.app = ttk.Window(themename = 'solar')
-        self.app.geometry('600x600')
-        self.app.title('Bank Management App')
-        
-        self.label_mainpage= ttk.Label(self.app, text = 'Bank Manegment Project', font =('arial', 18))
-        self.label_mainpage.grid(row = 1, column = 0, padx = 300)
-        
-        
-        self.button_login = ttk.Button(self.app, text = 'Login', style = SUCCESS, command=self.show_login_page) #command = page2
-        self.button_login.grid(row = 2, column = 0, padx=150, sticky='w') 
-        
-        self.button_registry = ttk.Button(self.app, text = 'Registry', style = SUCCESS, command=self.registry_page)  #command = registery_user_page3
-        self.button_registry.grid(row = 2, column = 0)
-        
-        
-        
-        # PAGE 2(UI): just for login 
+    #endregion
 
-        self.label_login = ttk.Label(self.app, text= 'Login', font=('arial', 20, 'bold'))
-        self.label_login.grid(row=1, column=0, padx=300)
+    # region main page GUI
+
+    def main_page(self):
+
+        self.app = ttk.Window(themename='solar')
+        self.app.geometry('600x600')
+        self.app.title('Bank Management')
+
+        self.label_mainpage = ttk.Label(self.app, text='Bank management', font=('arial', 18, 'bold'))
+        self.label_mainpage.grid(row = 0, column = 0, padx=170, sticky='w')
+
+        self.button_login = ttk.Button(self.app, text='Login', style=SUNKEN, command=self.login)
+        self.button_login.grid(row = 1, column = 0, padx=200,pady=10, sticky='w')
+
+        self.button_registry = ttk.Button(self.app, text = 'Registry', style = SUCCESS, command= self.registry) 
+        self.button_registry.grid(row = 1, column = 0, padx=300, pady=10, sticky='w')
+
+    #endregion 
+
+    # region login page GUI
+
+        self.label_login = ttk.Label(self.app, text= 'Login', font=('arial', 18, 'bold'))
+        self.label_login.grid(row=0, column=0, padx=250)
         self.label_login.grid_forget()
         
-        self.label_username_page2 = ttk.Label(self.app, text= 'User name', font= ('arial', 15, 'bold'))
-        self.label_username_page2.grid(row=2, column=0, padx=10, pady=10, sticky='w')
-        self.label_username_page2.grid_forget()
+        self.label_username_login_page = ttk.Label(self.app, text= 'Username', font= ('arial', 15, 'bold'))
+        self.label_username_login_page.grid(row=1, column=0, padx=10, pady=10, sticky='w')
+        self.label_username_login_page.grid_forget()
         
-        self.entry_username_page2 = ttk.Entry(self.app)
-        self.entry_username_page2.grid(row=2, column=1, padx=10, pady=10, sticky='w')
-        self.entry_username_page2.grid_forget()
+        self.entry_username_login_page = ttk.Entry(self.app, bootstyle="danger")
+        self.entry_username_login_page.grid(row=1,padx=100,pady=10)
+        self.entry_username_login_page.grid_forget()
         
-        self.label_password_page2 = ttk.Label(self.app, text= 'Password', font=('arial', 15, 'bold'))
-        self.label_password_page2.grid(row=4, column=0, padx=10, pady=10, sticky='w')
-        self.label_password_page2.grid_forget()
+        self.label_password_login_page = ttk.Label(self.app, text= 'Password', font=('arial', 15, 'bold'))
+        self.label_password_login_page.grid(row=2, column=0, padx=10, pady=10, sticky='w')
+        self.label_password_login_page.grid_forget()
         
-        self.entry_password_page2 = ttk.Entry(self.app)
-        self.entry_password_page2.grid(row=4, column=1, padx=10, pady=30)
-        self.entry_password_page2.grid_forget()
+        self.entry_password_login_page = ttk.Entry(self.app, bootstyle="danger")
+        self.entry_password_login_page.grid(row=2, padx=100, pady= 10)
+        self.entry_password_login_page.grid_forget()
         
-        self.button_enter = ttk.Button(self.app, text = 'Enter', style = SUCCESS) #command = vorood be app
-        self.button_enter.grid(row=5, column=0, padx=100, sticky='w')
+        self.button_enter = ttk.Button(self.app, text = 'Enter', style = SUCCESS, command=self.checking) # not finished
+        self.button_enter.grid(row=3, column=0, padx=200,pady= 10, sticky='w')
         self.button_enter.grid_forget()
 
-        self.button_back_page2 = ttk.Button(self.app, text = 'Back', style = SUCCESS, command=self.back_to_main_page) #command = back to main page
-        self.button_back_page2.grid(row=5, column=1, padx=100, sticky='w')
+        self.button_back_page2 = ttk.Button(self.app, text = 'Back', style = SUCCESS, command= self.back_main_page) 
+        self.button_back_page2.grid(row=3, column=0, padx=300, pady=10, sticky='w')
         self.button_back_page2.grid_forget()
 
+    #endregion 
 
-        # PAGE 3(UI): just for Registry
+    # region registry page GUI
+        self.label_registry_page = ttk.Label(self.app, text= 'Registry', font= ('arial', 18, 'bold'))
+        self.label_registry_page.grid(row=0, column=0, padx=250, pady= 10)
+        self.label_registry_page.grid_forget()
 
-        self.label_registration = ttk.Label(self.app, text= 'Registration', font=('arial', 18, 'bold'))
-        self.label_registration.grid(row=1, column=0, padx=300)
-        self.label_registration.grid_forget()
-
-        self.label_name = ttk.Label(self.app, text='Name', font=('arial', 15, 'bold'))
-        self.label_name.grid(row=2, column=0)
+        self.label_name = ttk.Label(self.app, text='Name', font= ('arial', 15, 'bold'))
+        self.label_name.grid(row=1, column=0, padx=10, pady=10, sticky='w')
         self.label_name.grid_forget()
 
-        self.entry_name = ttk.Entry(self.app)
-        self.entry_name.grid(row=2, column=1)
+        self.entry_name = ttk.Entry(self.app, bootstyle='danger')
+        self.entry_name.grid(row=1, padx=10, pady=10)
         self.entry_name.grid_forget()
 
-        self.label_family = ttk.Label(self.app, text='Family',font=('arial', 15, 'bold'))
-        self.label_family.grid(row=3, column=0)
+        self.label_family = ttk.Label(self.app, text= 'Family', font=('arial', 15, 'bold'))
+        self.label_family.grid(row=2, column=0, padx=10, pady=10, sticky='w')
         self.label_family.grid_forget()
 
-        self.entry_family = ttk.Entry(self.app)
-        self.entry_family.grid(row=3, column=1)
+        self.entry_family = ttk.Entry(self.app, bootstyle='danger')
+        self.entry_family.grid(row=2, padx=10, pady=10)
         self.entry_family.grid_forget()
 
-        self.label_nationalcode = ttk.Label(self.app, text='National Code',font=('arial', 15, 'bold'))
-        self.label_nationalcode.grid(row=4, column=0)
-        self.label_nationalcode.grid_forget()
-
-        self.entry_nationalcode = ttk.Entry(self.app)
-        self.entry_nationalcode.grid(row=4, column=1)
-        self.entry_nationalcode.grid_forget()
-
-        self.label_dateofbirth = ttk.Label(self.app, text='Date Of Birth',font=('arial', 15, 'bold'))
-        self.label_dateofbirth.grid(row=5, column=0)
-        self.label_dateofbirth.grid_forget()
-
-        self.entry_dateofbirth = ttk.Entry(self.app)
-        self.entry_dateofbirth.grid(row=5, column=1)
-        self.entry_dateofbirth.grid_forget()    
-
         self.label_email = ttk.Label(self.app, text='E-mail', font=('arial', 15, 'bold'))
-        self.label_email.grid(row=6, column=0)
+        self.label_email.grid(row=3, column=0, padx=10, pady=10, sticky='w')
         self.label_email.grid_forget()
 
-        self.entry_email = ttk.Entry(self.app)
-        self.entry_email.grid(row=6, column=1)
-        self.entry_email.grid_forget()    
+        self.entry_email = ttk.Entry(self.app, bootstyle = 'danger')
+        self.entry_email.grid(row=3, padx=10, pady=10)
+        self.entry_email.grid_forget()
 
-        self.label_password = ttk.Label(self.app, text='Password', font=('arial', 15, 'bold'))
-        self.label_password.grid(row=7, column=0)
-        self.label_password.grid_forget()
+        self.label_nationalcode = ttk.Label(self.app, text='National code', font= ('arial', 15, 'bold'))
+        self.label_nationalcode.grid(row=4, column=0, padx=10, pady=10, sticky='w')
+        self.label_nationalcode.grid_forget()
 
-        self.entry_password = ttk.Entry(self.app)
-        self.entry_password.grid(row=7, column=1)
-        self.entry_password.grid_forget()  
+        self.entry_nationalcode = ttk.Entry(self.app, bootstyle = 'danger')
+        self.entry_nationalcode.grid(row=4, padx=10, pady=10)
+        self.entry_nationalcode.grid_forget()
 
-        self.label_confirmpassword = ttk.Label(self.app, text='Confirm Password',font=('arial', 15, 'bold'))
-        self.label_confirmpassword.grid(row=8, column=0)
-        self.label_confirmpassword.grid_forget()
+        self.label_age = ttk.Label(self.app, text='Date of birth', font=('arial', 15, 'bold'))
+        self.label_age.grid(row=5, column=0, padx=10, pady=10, sticky='w')
+        self.label_age.grid_forget()
 
-        self.entry_confirmpassword = ttk.Entry(self.app)
-        self.entry_confirmpassword.grid(row=8, column=1)
-        self.entry_confirmpassword.grid_forget()
+        self.entry_age = ttk.Entry(self.app, bootstyle='danger')
+        self.entry_age.grid(row=5, padx=10, pady=10)
+        self.entry_age.grid_forget()
 
-        self.button_submit = ttk.Button(self.app, text = 'Submit', style = SUCCESS, command=self.login) #command = go next page
-        self.button_submit.grid(row=6, column=1)
+        self.label_password_registry = ttk.Label(self.app, text= 'Password', font=('arial', 15, 'bold'))
+        self.label_password_registry.grid(row=6, column=0, padx=10, pady=10,sticky='w')
+        self.label_password_registry.grid_forget()
+
+        self.entry_password_registry = ttk.Entry(self.app, bootstyle = 'danger')
+        self.entry_password_registry.grid(row=6, padx=10, pady=10)
+        self.entry_password_registry.grid_forget()
+
+        self.label_confirm_password = ttk.Label(self.app, text= 'Confirm password', font=('arial', 15, 'bold'))
+        self.label_confirm_password.grid(row=7, column=0, padx=10, pady=10, sticky='w')
+        self.label_confirm_password.grid_forget()
+        
+        self.entry_confirm_password = ttk.Entry(self.app, bootstyle= 'danger')
+        self.entry_confirm_password.grid(row=7, padx=10, pady=10)
+        self.entry_confirm_password.grid_forget()
+
+        self.button_submit = ttk.Button(self.app, text='Submit', style=SUCCESS, command= self.submit) 
+        self.button_submit.grid(row = 8, column = 0, padx=200,pady=10, sticky='w')  
         self.button_submit.grid_forget()
-        
-        self.button_back_page3 = ttk.Button(self.app, text = 'Back', style = SUCCESS) #command = back to main page 
-        self.button_back_page3.grid(row=6, column=1)
-        self.button_back_page3.grid_forget()
 
-
-
-
-
-
-
-
-
-
+        self.button_back_registry = ttk.Button(self.app, text='Back', style=SUCCESS, command= self.backtomainpage) 
+        self.button_back_registry.grid(row = 8, column = 0, padx=300,pady=10, sticky='w') 
+        self.button_back_registry.grid_forget()
 
         
-    
-        
-        
-        
+
+
+
+
+
+
+
+
+    #endregion
+
         self.app.mainloop()
-                
-object = BankManagement()
+
+objectory = BankManagement()
